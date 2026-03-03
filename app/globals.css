@@ -1,0 +1,60 @@
+:root {
+  color-scheme: light;
+  --bg: #fff9f3;
+  --card: #ffffff;
+  --ink: #3a2b21;
+  --accent: #ff8a5b;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 4px 14px rgba(58,43,33,0.08);
+}
+
+.hero { background: linear-gradient(160deg, #fff, #ffe3d1); }
+
+.wallet { display: flex; gap: 12px; flex-wrap: wrap; font-weight: 600; }
+.row { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+
+input, textarea, button {
+  border-radius: 12px;
+  border: 1px solid #e9d8cd;
+  font-size: 14px;
+  padding: 10px;
+}
+
+textarea { width: 100%; min-height: 90px; margin: 8px 0; }
+button {
+  background: var(--accent);
+  color: white;
+  border: 0;
+  font-weight: 700;
+}
+
+@media (min-width: 900px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}

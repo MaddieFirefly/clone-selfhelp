@@ -3,6 +3,8 @@ node_modules/
 
 # Build output
 dist/
+.next/
+*.tsbuildinfo
 
 # Environment files
 .env
@@ -23,3 +25,6 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Local runtime data
+.AI_PROJECT_MEMORY/app-data.json
