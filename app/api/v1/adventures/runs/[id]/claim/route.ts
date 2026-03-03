@@ -1,8 +1,8 @@
 import { conflict, notFound, ok, unprocessable } from '@/lib/http';
 import { applyXpProgression, logEvent, mutateStore } from '@/lib/store';
 
-export async function POST(_: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
+export async function POST(_: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
 
   const result = await mutateStore((s) => {
     const run = s.adventureRuns.find((r) => r.id === id);

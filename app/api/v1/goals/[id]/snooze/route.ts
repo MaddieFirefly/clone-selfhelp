@@ -1,8 +1,8 @@
 import { notFound, ok } from '@/lib/http';
 import { logEvent, mutateStore } from '@/lib/store';
 
-export async function POST(_: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
+export async function POST(_: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
 
   const store = await mutateStore((s) => {
     const goal = s.goals.find((g) => g.id === id);

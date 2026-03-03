@@ -1,8 +1,8 @@
 import { notFound, ok } from '@/lib/http';
 import { id, logEvent, mutateStore } from '@/lib/store';
 
-export async function POST(_: Request, { params }: { params: { id: string } }) {
-  const { id: adventureId } = params;
+export async function POST(_: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id: adventureId } = await params;
   const store = await mutateStore((s) => {
     const adventure = s.adventures.find((a) => a.id === adventureId);
     if (!adventure) throw new Error('not-found');

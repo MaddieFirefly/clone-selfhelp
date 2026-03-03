@@ -1,11 +1,11 @@
 import { badRequest, notFound, ok, parseJson } from '@/lib/http';
 import { mutateStore } from '@/lib/store';
 
-export async function PATCH(request: Request, { params }: { params: { id: string } }) {
+export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const body = await parseJson<Record<string, string>>(request);
   if (!body) return badRequest('Invalid JSON body');
 
-  const { id } = params;
+  const { id } = await params;
   const store = await mutateStore((s) => {
     const goal = s.goals.find((g) => g.id === id);
     if (!goal) throw new Error('not-found');

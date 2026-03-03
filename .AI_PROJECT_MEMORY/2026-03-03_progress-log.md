@@ -18,7 +18,12 @@
 - `npm run build`
 
 ## Remediation pass (post-review)
-- Removed fragile dynamic route handler signatures using `params: Promise<...>` and replaced with proper synchronous `params` objects.
+- Standardized dynamic route handler signatures and context typing during remediation.
 - Improved API error semantics with explicit `404`, `409`, and `422` helpers instead of masking many failures as generic `400`.
 - Hardened JSON parsing across write endpoints to return clear `Invalid JSON body` responses when request parsing fails.
 - Updated `.gitignore` to exclude build artifacts (`.next`, `*.tsbuildinfo`) and local runtime data (`.AI_PROJECT_MEMORY/app-data.json`).
+
+## Vercel build remediation (dynamic route typing)
+- Investigated reported Vercel type failure for `app/api/v1/adventures/[id]/start/route.ts`.
+- Updated all dynamic route handlers to use Next.js-compatible context typing: `params: Promise<{ id: string }>` and awaited param extraction.
+- Applied this consistently across goals, pet, and adventures dynamic API routes to prevent type-check drift between local and Vercel builds.
