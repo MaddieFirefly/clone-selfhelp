@@ -32,3 +32,8 @@
 - Fixed `CheckIn` typing mismatch by tightening Zod mood-related schemas from generic numbers to literal union values `1|2|3|4|5`.
 - Applied the same strict mood schema to `journal.mood` for consistency with shared domain types.
 - This aligns parsed payload types with `Mood` in `lib/types.ts` and prevents compile errors when pushing check-ins into typed store arrays.
+
+## Vercel deployment remediation (output directory/framework)
+- Resolved deployment-mode mismatch by explicitly setting `framework: nextjs` and `buildCommand: npm run build` in `vercel.json`.
+- Added a tracked `public/.gitkeep` so repos expecting a `public` directory do not fail directory existence checks.
+- Preserved security headers in `vercel.json` while keeping Next.js framework detection explicit.
